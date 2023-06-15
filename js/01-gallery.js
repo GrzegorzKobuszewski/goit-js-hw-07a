@@ -14,6 +14,8 @@ const galleryImages = galleryItems
 gallery.insertAdjacentHTML("beforeend", galleryImages);
 console.log(gallery);
 
+const handleEscapeKey = e => { if (e.key === "Escape") instance.close() };
+
 gallery.addEventListener("click", e => {
     e.preventDefault();
     if (e.target.nodeName !== "IMG") return;
@@ -22,16 +24,12 @@ gallery.addEventListener("click", e => {
         `<img src="${e.target.dataset.source}">`,
         {
             onShow: (instance) => {
-                document.addEventListener("keydown", (e) => {
-                    if (e.key === "Escape") instance.close( () => document.removeEventListener("keydown", "Escape" ) );
-                });
+                document.addEventListener("keydown", handleEscapeKey(e, instance));
             },
-        /*
             onClose: (instance) => {
-                document.removeEventListener("keydown", (e) => {
-                    if (e.key === "Escape") instance.close();
-                });
-            },*/
+                document.removeEventListener("keydown", handleEscapeKey(e, instance));
+            },
+
         });
     
     instance.show();
