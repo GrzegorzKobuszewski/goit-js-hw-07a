@@ -14,20 +14,20 @@ const galleryImages = galleryItems
 gallery.insertAdjacentHTML("beforeend", galleryImages);
 console.log(gallery);
 
-const handleEscapeKey = e => { if (e.key === "Escape") instance.close() };
-
 gallery.addEventListener("click", e => {
     e.preventDefault();
     if (e.target.nodeName !== "IMG") return;
 
+    const handleEscapeKey = e => { if (e.key === "Escape") instance.close() };
+
     const instance = basicLightbox.create(
         `<img src="${e.target.dataset.source}">`,
         {
-            onShow: (instance) => {
-                document.addEventListener("keydown", handleEscapeKey(e, instance));
+            onShow: () => {
+                document.addEventListener("keydown", handleEscapeKey);
             },
-            onClose: (instance) => {
-                document.removeEventListener("keydown", handleEscapeKey(e, instance));
+            onClose: () => {
+                document.removeEventListener("keydown", handleEscapeKey);
             },
 
         });
@@ -37,3 +37,22 @@ gallery.addEventListener("click", e => {
 });
 
 // getEventListeners(document);
+
+/*
+gallery.addEventListener("click", e => {
+    e.preventDefault();
+    if (e.target.nodeName !== "IMG") return;
+    const imageDataSource = e.target.getAttribute("data-source");
+
+    const instance = basicLightbox.create(
+        `<img src="${imageDataSource}" width="800" height="600">`,
+        {
+            onShow: (instance) => {
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") instance.close();
+                });
+            }
+        });
+    
+    instance.show();
+*/
