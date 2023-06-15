@@ -38,7 +38,7 @@ gallery.addEventListener("click", e => {
 
 // getEventListeners(document);
 
-/*
+/* W ten sposób niepotrzebnie zużywamy zasoby pamięci przeglądarki, bo za każdym razem (event click) otwieramy nowe nasłuchiwanie --> wniosek, trzeba je zamknąć! :)
 gallery.addEventListener("click", e => {
     e.preventDefault();
     if (e.target.nodeName !== "IMG") return;
