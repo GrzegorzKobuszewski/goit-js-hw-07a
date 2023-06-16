@@ -204,7 +204,12 @@ A MY NIE CHCEMY TAKIEGO DZIAŁANIA, chemy zwolnić pamięć, zaraz po zammknięc
 
 .... zatem najlepszą opcją jest stworzenie wcześniej wspomnianej funkcji, ktrą przekażemy jako callback - tak tak, teraz powtórka z modułu 4 się kładnia :wink:
 
-Zatem powstaje nam coś takiego
+Funkcja ma postać:
+const handleEscapeKey = e => { if (e.key === "Escape") instance.close() };
+
+Tylko uwaga, musi być w bloku: gallery.addEventListener (inaczej nie będzie działać)
+
+Zatem ostatecznie powstaje nam coś takiego:
 
 ---------------------------------------------------KOD-2c----------------------------------------------------------
 gallery.addEventListener("click", e => {
